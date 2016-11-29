@@ -22,14 +22,14 @@ def submit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO Movie (idMovie, MovieName, MovieYear) "
+        "INSERT INTO Movie (moviename, movieyear) "
         "VALUES (%s, %s)"
     )
-    data = (request.form['id'], request.form['Movie Name'], request.form['Movie Year'])
+    data = (request.form['moviename'], request.form['movieyear'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('index.html', idMovie=request.form['id'], MovieName=request.form['Movie Name'], MovieYear=request.form['Movie Year'])
+    return render_template('index.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
 
 @app.route('/sqlInjection')
 def sqlInjection(name=None):
@@ -40,8 +40,8 @@ def sqlInjectionResult():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
 
-    firstName = request.form['Movie Name']
-    query = ("SELECT * from Movie where MovieName = '" + MovieName + "'")
+    firstName = request.form['firstname']
+    query = ("SELECT * from Movie where moviename = '" + moviename + "'")
     cursor.execute(query)
     print("Attempting: " + query)
     users=cursor.fetchall()
