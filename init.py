@@ -3,6 +3,54 @@ import mysql.connector
 
 app = Flask(__name__)
 
+#==Welcome Page==#
+
+@app.route("/")
+def hello():
+	return render_template('page1.html')
+
+#==Log in as Staff==#
+
+@app.route("/staff_log_in")
+def hello():
+	return render_template('staff_log_in.html')
+
+#==Movie==#
+@app.route('/s_movie')
+def showmovie():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT * from Movie ORDER BY MovieName")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('/movie/list.html', users=users)
+
+
+#==Genre==#
+
+#==Showings==#
+
+#==Attend==#
+
+#==Room==#
+
+#==Customer==#
+
+
+
+
+
+
+#==Log in as Customer==#
+
+@app.route("/cust_log_in")
+def hello():
+	return render_template('cust_log_in.html')
+
+
+
+
 @app.route("/")
 def hello():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
@@ -12,6 +60,17 @@ def hello():
     users=cursor.fetchall()
     cnx.close()
     return render_template('users.html',users=users)
+
+@app.route('/movie')
+def showmovie():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT * from Movie ORDER BY MovieName")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('/movie/list.html', users=users)
+
 
 @app.route('/entername')
 def helloName(name=None):
