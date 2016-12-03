@@ -1,11 +1,10 @@
 <h1>Search Movies </h1>
 
-<form>
 By Genre: <br>
 {% for genre in genres %}
 <input list="Genre">
 <datalist id="Genre">
-<option value={{ user.0 }}>
+<option value={{ genre.0 }}>
 </datalist><br>
 {% endfor %}
-</form>
+
