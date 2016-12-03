@@ -383,9 +383,6 @@ def showattend():
     cnx.close()
     return render_template('/attend/list.html', users=users)
 
-
-
-
 ###### Log in as Customer
 
 @app.route("/cust_log_in")
@@ -395,6 +392,37 @@ def cust_log_in():
 @app.route("/search")
 def cust_search():
 	return render_template('search.html')
+
+@app.route("/search_movie", methods=["GET","POST"])
+def search_movie():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+
+    get_genre = (" SELECT DISTINCT(Genre) FROM Genre; ")
+    get_date = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
+    
+    try:
+
+        cursor.execute(get_genre)
+        Genre = cursor.fetchall()
+
+        cursor.execute(get_date)
+        Start_Time = cursor.fetchall()
+
+        cursor.execute(get_date)
+        End_Time = cursor.fetchall()
+
+        cnx.commit()
+        cursor.close()
+        cnx.close()
+
+        return render_template('searchmovie.html', genres = genre, stimes = stime, etimes = etime)
+
+    except:
+       
+        return render_template('fail.html')
+
+
 
 @app.route('/sqlInjection')
 def sqlInjection(name=None):
