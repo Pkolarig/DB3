@@ -377,9 +377,7 @@ def del_customer():
 def showattend():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
-    query = ("SELECT A.Customer_idCustomer,W.TheatreRoom_RoomNumber ,W.ShowingDateTime, C.FirstName, C.LastName,M.MovieName A.Rating from Customer C,
-(select * from Showing S,Attend A where S.idShowing = A.Showing_idShowing) W,Movie M where W.Customer_idCustomer = C.idCustomer 
-and W.Movie_idMovie=M.idMovie ORDER BY Rating;")
+    query = ("SELECT A.Customer_idCustomer,W.TheatreRoom_RoomNumber ,W.ShowingDateTime, C.FirstName, C.LastName,M.MovieName A.Rating FROM Customer C, (SELECT * FROM Showing S,Attend A WHERE S.idShowing = A.Showing_idShowing) W,Movie M WHERE W.Customer_idCustomer = C.idCustomer AND W.Movie_idMovie=M.idMovie ORDER BY Rating;")
     cursor.execute(query)
     users=cursor.fetchall()
     cnx.close()
