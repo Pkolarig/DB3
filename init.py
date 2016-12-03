@@ -39,8 +39,8 @@ def addmovie():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_movie= (
-        "INSERT INTO Movie (MovieName, MovieYear) "
-        "VALUES (%s, %s)"
+        "INSERT INTO Movie (idMovie, MovieName, MovieYear) "
+        "VALUES (%s, %s, %s)"
     )
     data = (request.form['idMovie'], request.form['MovieName'], request.form['MovieYear'])
     
