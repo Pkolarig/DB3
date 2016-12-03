@@ -31,7 +31,7 @@ def showmovie():
 #ADD
 @app.route("/movie/add")
 def movielist():
-	return render_template('add1.html')
+	return render_template('add.html')
 
 
 @app.route('/addmovie', methods=["GET","POST"])
@@ -50,7 +50,7 @@ def addmovie():
         cnx.commit()
         cursor.close()
         cnx.close()
-        return render_template('/movie/m_insert_success.html')
+        return render_template('/movie/success.html')
 
     except:
         
