@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-	return render_template('page1.html')
+	return render_template('Page1.html')
 
 #Log in as Staff
 
