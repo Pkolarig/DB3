@@ -15,7 +15,7 @@ def hello():
 def staff_log_in():
 	return render_template('staff_log_in.html')
 
-#Movie
+#MOVIE
 
 #LIST
 @app.route('/movie')
@@ -99,6 +99,67 @@ def del_movie():
     cnx.close()
     return render_template('/movie/success.html')
 
+
+############GENRE
+
+#ADD
+
+@app.route("/genre/add")
+def genrelist():
+	return render_template('/genre/add.html')
+
+
+@app.route('/addgenre', methods=["GET","POST"])
+def addgenre():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    insert_movie= (
+        "INSERT INTO Genre (Genre, Movie_idMovie) "
+        "VALUES (%s, %s)"
+    )
+    data = (request.form['Genre'], request.form['Movie_idMovie'])
+    
+
+    try:
+        cursor.execute(insert_genre, data)
+        cnx.commit()
+        cursor.close()
+        cnx.close()
+        return render_template('/genre/success.html')
+
+    except:
+        
+        return render_template('fail.html')
+
+#LIST
+
+@app.route('/genre')
+def showmovie():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT Genre, MovieName from Genre, Movie WHERE Genre.Movie_IDMovie = Movie.idMovie ORDER BY Genre")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('/genre/list.html', users=users)
+
+#DELETE
+
+@app.route('/genre/delete', methods=["GET","POST"])
+def del_genre():
+    id = request.args.get('id')
+    genre = request.args.get('genre')
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    delete_stmt = (
+        "DELETE FROM Genre WHERE Genre= %s and Movie_idMovie=%s;"
+    )
+    data = (id,genre)
+    cursor.execute(delete_stmt, data)
+    print (cursor._executed)
+    cnx.commit()
+    cnx.close()
+    return render_template('/genre/success.html')
 
 
 
