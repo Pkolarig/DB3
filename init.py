@@ -322,7 +322,7 @@ def addcust():
         cnx.commit()
         cursor.close()
         cnx.close()
-        return render_template('/customer/success.html')
+        return render_template('/customer/success.htm')
 
     except:
         
@@ -352,7 +352,7 @@ def modifycust():
     cursor.execute(query, data)
     cnx.commit()
     cnx.close()
-    return render_template('/customer/success.html')
+    return render_template('/customer/success.htm')
 
 #########DELETE
 
