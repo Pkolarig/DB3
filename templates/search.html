@@ -1,47 +1,33 @@
 <h1>Search Movies </h1>
 
 <form>
-      By Genre: <br>
+By Genre: <br>
 <input list="Genre">
 <datalist id="Genre">
-{% for user in users %}
-  <option value={{ user.0 }}>
+{% for genre in genres %}
+<option value={{ genre.0 }}>
 </datalist><br>
 {% endfor %}
 
 By Date: <br>
+Start Date: <input list="StartDate">
 <input list="Date">
 <datalist id="Date">
-{% for user in users %}
-  <option value={{ user.0 }}>
+{% for date in dates %}
+<option value={{ date.0 }}>
 </datalist><br>
 {% endfor %}
 
-
-</script>
-Start Date: <input list="StartDate">
-<datalist id="Genre">
-  <option value="Action">
-  <option value="SciFi">
-  <option value="Animated">
-  <option value="Romance">
-  <option value="Drama">
-  <option value="Comedy">
-</datalist>
-
 End Date: <input list="EndDate">
-<datalist id="Genre">
-  <option value="Action">
-  <option value="SciFi">
-  <option value="Animated">
-  <option value="Romance">
-  <option value="Drama">
-  <option value="Comedy">
+<input list="Date">
+<datalist id="Date">
+{% for date in dates %}
+<option value={{ date.0 }}>
 </datalist>
-
-<input type="text" name="date" value=""><br>
+{% endfor %}
+<br>
 By Available Shows: <br>
-<input type="checkbox" name="date" value=""><br>
+<input type="checkbox" name="date" value="">
 By Movie: <br>
 <input type="text" name="moviename" value=""><br>
 
