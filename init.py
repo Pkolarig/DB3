@@ -337,7 +337,7 @@ def customer_modify_select():
     sql = "SELECT * FROM `Customer` WHERE idCustomer = %s;"
     cursor.execute(sql, (id,))
     result = cursor.fetchall()
-    return render_template("/customer/modify.htm", id=id, FirstName=result[0][1], LastName=result[0][2], EmailAddress=result[0][3],Sex=result[0][4])
+    return render_template("/customer/modify.html", id=id, FirstName=result[0][1], LastName=result[0][2], EmailAddress=result[0][3],Sex=result[0][4])
 
 
 @app.route('/customer/modify', methods=["GET","POST"])
