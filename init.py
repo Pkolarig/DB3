@@ -287,27 +287,103 @@ def addshow():
         
         return render_template('fail.html')
 
-
-
 ########## CUSTOMER
 
-##### ADD
+########LIST
+@app.route('/customer')
+def showcust():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT * from Customer ORDER BY LastName")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('/customer/list.html', users=users)
 
-##### LIST 
-
-##### MODIFY
-
-##### DELETE
-
+########ADD
+@app.route("/customer/add")
+def custlist():
+	return render_template('/customer/add.html')
 
 
+@app.route('/addcustomer', methods=["GET","POST"])
+def addcust():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    insert_cust= (
+        "INSERT INTO Customer (idCustomer, FirstName, LastName, EmailAddress, Sex) "
+        "VALUES (%s, %s, %s,%s,%s)"
+    )
+    data = (request.form['idCustomer'], request.form['FirstName'], request.form['LastName'],request.form['EmailAddress'],request.form['Sex'])
+    
+
+    try:
+        cursor.execute(insert_cust, data)
+        cnx.commit()
+        cursor.close()
+        cnx.close()
+        return render_template('/customer/success.html')
+
+    except:
+        
+        return render_template('fail.html')
+
+######### MODIFY
+@app.route('/customer/modifyselect', methods=["POST"])
+def customer_modify_select():
+    id = request.args.get('id')
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()    
+    sql = "SELECT * FROM `Customer` WHERE idCustomer = %s;"
+    cursor.execute(sql, (id,))
+    result = cursor.fetchall()
+    return render_template("/customer/modify.htm", id=id, FirstName=result[0][1], LastName=result[0][2], EmailAddress=result[0][3],Sex=result[0][4])
 
 
+@app.route('/customer/modify', methods=["GET","POST"])
+def modifycust():
+    id = request.args.get('id')
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query= (
+        "UPDATE Customer SET FirstName =%s, LastName = %s, EmailAddress =%s,  Sex =%s where idCustomer = %s;"
+    )
+    data = (request.form['FirstName'], request.form['LastName'], request.form['EmailAddress'], request.form['Sex'],id,)
+    cursor.execute(query, data)
+    cnx.commit()
+    cnx.close()
+    return render_template('/customer/success.html')
 
+#########DELETE
 
+@app.route('/customer/delete', methods=["GET","POST"])
+def del_customer():
+    id = request.args.get('id')
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    delete_cust = (
+        "DELETE FROM Customer WHERE idCustomer = %s;"
+    )
+    data = (id,)
+    cursor.execute(delete_cust, data)
+    print (cursor._executed)
+    cnx.commit()
+    cnx.close()
+    return render_template('/customer/success.htm')
 
-
-
+#####ATTEND
+########LIST
+@app.route('/attend')
+def showattend():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT A.Customer_idCustomer,W.TheatreRoom_RoomNumber ,W.ShowingDateTime, C.FirstName, C.LastName,M.MovieName A.Rating,from Customer C
+(select * from Showing S,Attend A where S.idShowing = A.Showing_idShowing) W,Movie M where W.Customer_idCustomer = C.idCustomer 
+and W.Movie_idMovie=M.idMovie ORDER BY Rating;")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('/attend/list.html', users=users)
 
 
 
