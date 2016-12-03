@@ -31,7 +31,7 @@ def showmovie():
 #ADD
 @app.route("/movie/add")
 def movielist():
-	return render_template('add.html')
+	return render_template('/movie/add.html')
 
 
 @app.route('/addmovie', methods=["GET","POST"])
@@ -65,7 +65,7 @@ def modify_detail():
     sql = "SELECT * FROM `Movie` WHERE idMovie = %s;"
     cursor.execute(sql, (id,))
     result = cursor.fetchall()
-    return render_template("/movie/modify.html", id=id, MovieYear=result[0][2], MovieName=result[0][1])
+    return render_template("/movie/modify.htm", id=id, MovieYear=result[0][2], MovieName=result[0][1])
 
 
 @app.route('/movie/modify', methods=["GET","POST"])
