@@ -4,16 +4,48 @@
       By Genre: <br>
 <input list="Genre">
 <datalist id="Genre">
-  <option value="">
-  <option value="Firefox">
-  <option value="Chrome">
-  <option value="Opera">
-  <option value="Safari">
+{% for genre in genres %}
+  <option value={{ user.0 }}>
 </datalist><br>
+{% endfor %}
 
+By Date: <br>
+<script>
+function myFunction() {
+    var x = document.createElement("INPUT");
+    x.setAttribute("type", "date");
+    x.setAttribute("value", "2014-02-09");
+    document.body.appendChild(x);
+}
+</script>
+Start Date: <input list="StartDate">
+<datalist id="Genre">
+  <option value="Action">
+  <option value="SciFi">
+  <option value="Animated">
+  <option value="Romance">
+  <option value="Drama">
+  <option value="Comedy">
+</datalist>
 
-           By Date: <br>
-           <input type="text" name="date" value=""><br>
+End Date: <input list="EndDate">
+<datalist id="Genre">
+  <option value="Action">
+  <option value="SciFi">
+  <option value="Animated">
+  <option value="Romance">
+  <option value="Drama">
+  <option value="Comedy">
+</datalist>
+
+<input type="text" name="date" value=""><br>
+By Available Shows: <br>
+<input type="checkbox" name="date" value=""><br>
+By Movie: <br>
+<input type="text" name="moviename" value=""><br>
+
+<label> ID</label>
+		<input type="text" name="idCustomer" value="{{idCustomer}}" id="idCustomer"/>
 
 <input type="submit" value="Submit">
 </form>
