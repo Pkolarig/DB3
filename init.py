@@ -12,7 +12,7 @@ def hello():
 #Log in as Staff
 
 @app.route("/staff_log_in")
-def hello():
+def staff_log_in():
 	return render_template('staff_log_in.html')
 
 #Movie
@@ -110,7 +110,7 @@ def del_movie():
 #==Log in as Customer
 
 @app.route("/cust_log_in")
-def hello():
+def cust_log_in():
 	return render_template('cust_log_in.html')
 
 
