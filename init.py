@@ -148,12 +148,13 @@ def showmoviegenre():
 @app.route('/genre/delete', methods=["GET","POST"])
 def del_genre():
     id = request.args.get('id')
+    genre = request.args.get('genre')
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     delete_stmt = (
         "DELETE FROM Genre WHERE Genre= %s and Movie_idMovie=%s;"
     )
-    data = (id)
+    data = (id,genre)
     cursor.execute(delete_stmt, data)
     print (cursor._executed)
     cnx.commit()
