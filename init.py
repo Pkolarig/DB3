@@ -3,21 +3,21 @@ import mysql.connector
 
 app = Flask(__name__)
 
-#==Welcome Page==#
+#Welcome Page
 
 @app.route("/")
 def hello():
 	return render_template('page1.html')
 
-#==Log in as Staff==#
+#Log in as Staff
 
 @app.route("/staff_log_in")
 def hello():
 	return render_template('staff_log_in.html')
 
-#-------Movie-------------------------------------------------------------
+#Movie
 
-#==LIST=#
+#LIST
 @app.route('/movie')
 def showmovie():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
@@ -28,7 +28,7 @@ def showmovie():
     cnx.close()
     return render_template('/movie/list.html', users=users)
 
-#==ADD=#
+#ADD
 @app.route("/movie/add")
 def movielist():
 	return render_template('add1.html')
@@ -56,7 +56,7 @@ def addmovie():
         
         return render_template('fail.html')
 
-#=MODIFY=#
+#MODIFY
 @app.route('/movie/modifydetail', methods=["POST"])
 def modify_detail():
     id = request.args.get('id')
@@ -82,7 +82,7 @@ def modifymovie():
     cnx.close()
     return render_template('/movie/success.html')
 
-#==DELETE==#
+#DELETE
 
 @app.route('/movie/delete', methods=["GET","POST"])
 def del_movie():
@@ -100,22 +100,14 @@ def del_movie():
     return render_template('/movie/success.html')
 
 
-#==Genre==#
-
-#==Showings==#
-
-#==Attend==#
-
-#==Room==#
-
-#==Customer==#
 
 
 
 
 
 
-#==Log in as Customer==#
+
+#==Log in as Customer
 
 @app.route("/cust_log_in")
 def hello():
