@@ -216,7 +216,7 @@ def room_modify_select():
 
 
 @app.route('/room/modify', methods=["GET","POST"])
-def modifymovie():
+def modifyroom():
     id = request.args.get('id')
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
