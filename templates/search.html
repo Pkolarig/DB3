@@ -4,10 +4,10 @@
       By Genre: <br>
 <input list="Genre">
 <datalist id="Genre">
-{% for distinct(genre) in genres %}
+{% for genre in genres %}
   <option value={{ genre.0 }}>
-</datalist><br>
 {% endfor %}
+</datalist><br>
 
 By Date: <br>
 <script>
