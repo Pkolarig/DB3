@@ -1,9 +1,41 @@
 <h1>Search Movies </h1>
 
+<h1>Search Movies </h1>
+
 By Genre: <br>
-<input list="Genre">
-<datalist id="Genre">
-{% for genre in genres %}
-<option value={{ genre.0 }}>
+{% for user in user %}
+<input list="genre" name="genre">
+  <datalist id="genre">
+    <option value={{genre.0}}>
+</datalist>
+{% endfor %}<br><br>
+
+By Date: <br>
+Start Date
+{% for user in user %}
+<input list="stime" name="stime">
+  <datalist id="stime">
+    <option value={{stime.0}}>
 </datalist>
 {% endfor %}
+
+: End Date
+{% for user in user %}
+<input list="etime" name="etime">
+  <datalist id="etime">
+    <option value={{etime.0}}>
+</datalist>
+{% endfor %}
+<br><br>
+By Available Shows:
+{% for user in user %}
+<input type="checkbox" id="cbox1" value="first_checkbox"> {{user.0}}</label><br>
+{% endfor %}
+<br><br>
+By Movie Title:
+<input type="text" name="moviename" value="">
+
+
+
+
+
