@@ -149,7 +149,7 @@ def showmoviegenre():
 def del_genre():
     id = request.args.get('id')
     genre = request.args.get('genre')
-   print (id)
+    print(id)
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     delete_genre = (
