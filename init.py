@@ -209,7 +209,7 @@ def room_modify_select():
     id = request.args.get('id')
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()    
-    sql = "SELECT * FROM `TheatreRoom` WHERE RoomNumber  = %s;"
+    sql = "SELECT * FROM `TheatreRoom` WHERE RoomNumber = %s;"
     cursor.execute(sql, (id,))
     result = cursor.fetchall()
     return render_template("/room/modify.html", id=id, Capacity=result[0][1])
@@ -221,9 +221,9 @@ def modifyroom():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     query= (
-        "UPDATE TheatreRoom SET Capacity =%s WHERE RoomNumber = %s;"
+        "UPDATE TheatreRoom SET Capacity = %s WHERE RoomNumber = %s;"
     )
-    data = (request.form['Capacity'], id, )
+    data = (request.form['Capacity'],id, )
     cursor.execute(query, data)
     cnx.commit()
     cnx.close()
