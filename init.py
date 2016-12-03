@@ -392,6 +392,9 @@ def showattend():
 def cust_log_in():
 	return render_template('cust_log_in.html')
 
+@app.route("/search")
+def cust_log_in():
+	return render_template('search.html')
 
 @app.route('/sqlInjection')
 def sqlInjection(name=None):
