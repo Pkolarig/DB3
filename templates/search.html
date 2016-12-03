@@ -1,12 +1,10 @@
 <h1>Search Movies </h1>
 
-<h1>Search Movies </h1>
-
 By Genre: <br>
-{% for genre in genres %}
-<input list="genre" name="genre">
-  <datalist id="genre">
-    <option value={{genre.0}}>
+{% for Genre in Genre %}
+<input list="Genre" name="Genre">
+  <datalist id="Genre">
+    <option value={{Genre.0}}>
 </datalist>
 {% endfor %}<br><br>
 
