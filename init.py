@@ -223,11 +223,11 @@ def modifyroom():
     query= (
         "UPDATE TheatreRoom SET Capacity =%s WHERE RoomNumber = %s;"
     )
-    data = (request.form['Capicity'], id, )
+    data = (request.form['Capacity'], id, )
     cursor.execute(query, data)
     cnx.commit()
     cnx.close()
-    return render_template('/movie/success.html')
+    return render_template('/room/success.html')
 
 #########DELETE
 
