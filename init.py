@@ -134,7 +134,7 @@ def addgenre():
 #LIST
 
 @app.route('/genre')
-def showmovie():
+def showmoviegenre():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     query = ("SELECT Genre, MovieName from Genre, Movie WHERE Genre.Movie_IDMovie = Movie.idMovie ORDER BY Genre")
