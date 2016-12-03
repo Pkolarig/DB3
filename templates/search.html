@@ -2,43 +2,10 @@
 
 <form>
 By Genre: <br>
+{% for genre in genres %}
 <input list="Genre">
 <datalist id="Genre">
-{% for genre in genres %}
-<option value={{ genre.0 }}>
+<option value={{ user.0 }}>
 </datalist><br>
 {% endfor %}
-
-By Date: <br>
-Start Date: <input list="StartDate">
-<input list="Date">
-<datalist id="Date">
-{% for date in dates %}
-<option value={{ date.0 }}>
-</datalist><br>
-{% endfor %}
-
-End Date: <input list="EndDate">
-<input list="Date">
-<datalist id="Date">
-{% for date in dates %}
-<option value={{ date.0 }}>
-</datalist>
-{% endfor %}
-<br>
-By Available Shows: <br>
-<input type="checkbox" name="date" value="">
-By Movie: <br>
-<input type="text" name="moviename" value=""><br>
-
-<label> ID</label>
-		<input type="text" name="idCustomer" value="{{idCustomer}}" id="idCustomer"/>
-
-<input type="submit" value="Submit">
 </form>
-
-
-
-
-
-
