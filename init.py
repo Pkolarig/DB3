@@ -404,13 +404,13 @@ def search_movie():
     try:
 
         cursor.execute(get_genre)
-        Genre = cursor.fetchall()
+        genre = cursor.fetchall()
 
         cursor.execute(get_date)
-        Start_Time = cursor.fetchall()
+        stime = cursor.fetchall()
 
         cursor.execute(get_date)
-        End_Time = cursor.fetchall()
+        etime = cursor.fetchall()
 
         cnx.commit()
         cursor.close()
