@@ -57,8 +57,8 @@ def addmovie():
         return render_template('fail.html')
 
 #MODIFY
-@app.route('/movie/modifydetail', methods=["POST"])
-def modify_detail():
+@app.route('/movie/modifyselect', methods=["POST"])
+def modify_select():
     id = request.args.get('id')
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()    
