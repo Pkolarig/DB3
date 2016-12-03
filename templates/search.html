@@ -4,13 +4,20 @@
       By Genre: <br>
 <input list="Genre">
 <datalist id="Genre">
-{% for genre in genres %}
-  <option value={{ genre.0 }}>
+{% for user in users %}
+  <option value={{ user.0 }}>
 </datalist><br>
 {% endfor %}
 
 By Date: <br>
-<script>
+<input list="Date">
+<datalist id="Date">
+{% for user in users %}
+  <option value={{ user.0 }}>
+</datalist><br>
+{% endfor %}
+
+
 function myFunction() {
     var x = document.createElement("INPUT");
     x.setAttribute("type", "date");
