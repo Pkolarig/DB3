@@ -393,8 +393,8 @@ def cust_log_in():
 def search_movie():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
-    get_genre = (" SELECT DISTINCT(Genre) FROM Genre; ")
-    get_date = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
+    get_genre = (" SELECT DISTINCT(Genre) FROM Genre ")
+    get_date = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime ")
     
     try:
         cursor.execute(get_genre)
