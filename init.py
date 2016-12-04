@@ -401,7 +401,8 @@ def searchm():
     querygenre = (" SELECT DISTINCT(Genre) FROM Genre; ")
     querydate = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
     queryshowing=("select distinct(MovieName) from Movie,TheatreRoom, Showing where Showing.TheatreRoom_RoomNumber=TheatreRoom.RoomNumber and Showing. Movie_idMovie=Movie.idMovie and TheatreRoom.Capacity>1;")
-    try:
+    
+try:
 
         cursor.execute(querygenre)
         genres = cursor.fetchall()
@@ -412,18 +413,15 @@ def searchm():
         cursor.execute(querydate)
         etimes = cursor.fetchall()
 
-	cursor.execute(queryshowing)
-        shows = cursor.fetchall()
-
 	cnx.commit()
         cursor.close()
         cnx.close()
 
-        return render_template('search.html', genres = genres, stimes = stimes, etimes = etimes,shows=shows )
+        return render_template('search.html', genres = genres, stimes = stimes, etimes = etimes)
 
-    except:
-       
-        return render_template('fail.html')
+except:
+	
+       return render_template('fail.html')
 
 
 @app.route('/sqlInjection')
