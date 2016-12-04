@@ -397,25 +397,23 @@ def searchmovie():
 def searchm():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
-    get_genre = (" SELECT DISTINCT(Genre) FROM Genre; ")
-    get_date = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
-    get_showing=("select distinct(MovieName) from Movie,TheatreRoom, Showing where Showing.TheatreRoom_RoomNumber=TheatreRoom.RoomNumber and Showing. Movie_idMovie=Movie.idMovie and TheatreRoom.Capacity>1;")
+    querygenre = (" SELECT DISTINCT(Genre) FROM Genre; ")
+    querydate = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
+    queryshowing=("select distinct(MovieName) from Movie,TheatreRoom, Showing where Showing.TheatreRoom_RoomNumber=TheatreRoom.RoomNumber and Showing. Movie_idMovie=Movie.idMovie and TheatreRoom.Capacity>1;")
 
     try:
-        cursor.execute(get_genre)
-        genre = cursor.fetchall()
-
-        cursor.execute(get_date)
-        stime = cursor.fetchall()
-
-        cursor.execute(get_date)
-        etime = cursor.fetchall()
-
-        cnx.commit()
+        cursor.execute(querygenre)
+        genres = cursor.fetchall()
+        cursor.execute(querydate)
+        stimes = cursor.fetchall()
+        cursor.execute(queryshowing)
+        etimes = cursor.fetchall()
+	cursor.execute(get_showing)
+        shows = cursor.fetchall()
+	cnx.commit()
         cursor.close()
         cnx.close()
-
-        return render_template('searchlist.html', genres = genre, stimes = stime, etimes = etime)
+        return render_template('search.html', genres = genres, stimes = stimes, etimes = etimes,shows=shows )
 
     except:
        
@@ -432,7 +430,7 @@ def sqlInjectionResult():
     cursor = cnx.cursor()
 
     firstName = request.form['firstname']
-    query = ("SELECT * from Customer where firstname = '" + firstName + "'")
+    query = ("SELECT * from Customer where firstname = '" + firstName + "'")a
     cursor.execute(query)
     print("Attempting: " + query)
     users=cursor.fetchall()
