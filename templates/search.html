@@ -3,36 +3,16 @@
 <h1>Search Movies </h1>
 
 By Genre: <br>
-<select name="genre">
-     {% for genre in genres %}
-     <option value={{ genre.0 }}>{{ genre.0 }}</option>
-     {% endfor %}
-     </select>
-
-Please select <B>showing date </B>:<br>
-     From
-
-     <select name="s_time">
-     {% for stime in stimes %}
-     <option value={{ stime.0 }}>{{ stime.0 }}</option>
-     {% endfor %}
-     </select>
-
-     to
-
-     <select name="e_time">
-     {% for etime in etimes %}
-     <option value={{ etime.0 }}>{{ etime.0 }}</option>
-     {% endfor %}
-     </select>
-
-     <br/>
-     <br/>
-
+{% for genre in genres %}
+<input list="genre" name="genre">
+  <datalist id="genre">
+    <option value={{genre.0}}>
+</datalist>
+{% endfor %}<br><br>
 
 By Date: <br>
 Start Date
-{% for stime in stime %}
+{% for stime in stimes %}
 <input list="stime" name="stime">
   <datalist id="stime">
     <option value={{stime.0}}>
@@ -40,7 +20,7 @@ Start Date
 {% endfor %}
 
 : End Date
-{% for etime in etime %}
+{% for etime in etimes %}
 <input list="etime" name="etime">
   <datalist id="etime">
     <option value={{etime.0}}>
