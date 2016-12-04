@@ -433,7 +433,7 @@ def sqlInjectionResult():
     cursor = cnx.cursor()
 
     firstName = request.form['firstname']
-    query = ("SELECT * from Customer where firstname = '" + firstName + "'")a
+    query = ("SELECT * from Customer where firstname = '" + firstName + "'")
     cursor.execute(query)
     print("Attempting: " + query)
     users=cursor.fetchall()
