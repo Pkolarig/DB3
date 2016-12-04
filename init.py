@@ -398,30 +398,29 @@ def searchm():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
 
-    querygenre = (" SELECT DISTINCT(Genre) FROM Genre; ")
-    querydate = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
-    queryshowing=("select distinct(MovieName) from Movie,TheatreRoom, Showing where Showing.TheatreRoom_RoomNumber=TheatreRoom.RoomNumber and Showing. Movie_idMovie=Movie.idMovie and TheatreRoom.Capacity>1;")
-    
-try:
+    get_genre = (" SELECT DISTINCT(Genre) FROM Genre; ")
+    get_date = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
+    try:
 
-        cursor.execute(querygenre)
+        cursor.execute(get_genre)
         genres = cursor.fetchall()
 
-        cursor.execute(querydate)
+        cursor.execute(get_date)
         stimes = cursor.fetchall()
 
-        cursor.execute(querydate)
+        cursor.execute(get_date)
         etimes = cursor.fetchall()
 
-	cnx.commit()
+        cnx.commit()
         cursor.close()
         cnx.close()
 
-        return render_template('search.html', genres = genres, stimes = stimes, etimes = etimes)
+        return render_template('FrontEnd/search.html', genres = genres, stimes = stimes, etimes = etimes)
 
-except:
-	
-       return render_template('fail.html')
+    except:
+        print(insert_cus)
+        print(data)
+        return render_template('fail.html')
 
 
 @app.route('/sqlInjection')
