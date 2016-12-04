@@ -1,11 +1,11 @@
-<form action="/searchm" method="post">
+<form action="/searchm" method=post>
 
 <h1>Search Movies </h1>
 
 By Genre: <br>
 {% for genre in genres %}
-<input list="genre" name="genre">
-  <datalist id="genre">
+<input list="genres" name="genre">
+  <datalist id="genres">
     <option value={{genre.0}}>
 </datalist>
 {% endfor %}<br><br>
@@ -33,7 +33,7 @@ By Available Shows:
 {% endfor %}
 <br><br>
 By Movie Title:
-<input type="text" name="moviename" value="">
+<input type="text" name=search value="{{ request.form.search}}">
 <br>
 <br>
 <input type="submit" value="Submit">
