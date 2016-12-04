@@ -422,6 +422,42 @@ def searchm():
         print(data)
         return render_template('fail.html')
 
+@app.route("/imp_search", methods=["GET","POST"])
+def imp_search():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+
+    shows = (" SELECT idShowing, ShowingDateTime, MovieName, Genre, TheatreRoom_RoomNumber, TicketPrice FROM Movie m, Showing s, Genre WHERE m.idMovie = s.Movie_idMovie AND Genre.Movie_idMovie = s.Movie_idMovie AND Genre = %s AND MovieName = %s AND ShowingDateTime >= %s AND ShowingDateTime <= %s ")
+    data = (request.form['Genre'], request.form['Movie'], request.form['s_time'], request.form['e_time'])
+
+    ticket = (" SELECT Capacity FROM Movie m, Showing s, Genre WHERE m.idMovie = s.Movie_idMovie AND Genre.Movie_idMovie = s.Movie_idMovie AND Genre = %s AND MovieName = %s AND ShowingDateTime >= %s AND ShowingDateTime <= %s ")
+
+
+    try:
+        statu = request.form['statu']
+    except:
+        statu = "No"
+
+    if statu == "Yes":
+        print("Yes")
+
+    else:
+        pass
+
+    try:
+        cursor.execute(s_show, data)
+        shows = cursor.fetchall()
+        print (shows)
+
+        cnx.commit()
+        cursor.close()
+        cnx.close()
+
+        return render_template('success.html')
+
+    except:
+        print(data)
+        return render_template('fail.html')
 
 @app.route('/sqlInjection')
 def sqlInjection(name=None):
