@@ -397,27 +397,28 @@ def searchmovie():
 def searchm():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
-	
+
     querygenre = (" SELECT DISTINCT(Genre) FROM Genre; ")
     querydate = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
-    queryshowing = ("select distinct(MovieName) from Movie,TheatreRoom, Showing where Showing.TheatreRoom_RoomNumber=TheatreRoom.RoomNumber and Showing. Movie_idMovie=Movie.idMovie and TheatreRoom.Capacity>1;")
-
+    queryshowing=("select distinct(MovieName) from Movie,TheatreRoom, Showing where Showing.TheatreRoom_RoomNumber=TheatreRoom.RoomNumber and Showing. Movie_idMovie=Movie.idMovie and TheatreRoom.Capacity>1;")
     try:
+
         cursor.execute(querygenre)
         genres = cursor.fetchall()
-        
-	cursor.execute(querydate)
+
+        cursor.execute(querydate)
         stimes = cursor.fetchall()
-        
-	cursor.execute(querydate)
+
+        cursor.execute(querydate)
         etimes = cursor.fetchall()
-	
+
 	cursor.execute(queryshowing)
         shows = cursor.fetchall()
-	
+
 	cnx.commit()
         cursor.close()
         cnx.close()
+
         return render_template('search.html', genres = genres, stimes = stimes, etimes = etimes,shows=shows )
 
     except:
