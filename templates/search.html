@@ -1,7 +1,9 @@
+<form action="/search" method="post">
+
 <h1>Search Movies </h1>
 
 By Genre: <br>
-{% for user in genres %}
+{% for genre in genres %}
 <input list="genre" name="genre">
   <datalist id="genre">
     <option value={{genre.0}}>
@@ -33,7 +35,7 @@ By Available Shows:
 By Movie Title:
 <input type="text" name="moviename" value="">
 
-
+</form>
 
 
 
