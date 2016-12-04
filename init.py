@@ -389,20 +389,14 @@ def showattend():
 def cust_log_in():
 	return render_template('cust_log_in.html')
 
-@app.route("/search")
-def cust_search():
-	return render_template('search.html')
-
-@app.route("/search_movie", methods=["GET","POST"])
+@app.route("/search", methods=["GET","POST"])
 def search_movie():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
-
     get_genre = (" SELECT DISTINCT(Genre) FROM Genre; ")
     get_date = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
     
     try:
-
         cursor.execute(get_genre)
         genre = cursor.fetchall()
 
@@ -416,11 +410,13 @@ def search_movie():
         cursor.close()
         cnx.close()
 
-        return render_template('searchmovie.html', genres = genre, stimes = stime, etimes = etime)
+        return render_template('search.html', genres = genre, stimes = stime, etimes = etime)
 
     except:
        
         return render_template('fail.html')
+
+
 
 
 
