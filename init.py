@@ -397,9 +397,10 @@ def searchmovie():
 def searchm():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
-    get_genre = (" SELECT DISTINCT(Genre) FROM Genre ")
-    get_date = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime ")
-    
+    get_genre = (" SELECT DISTINCT(Genre) FROM Genre; ")
+    get_date = (" SELECT DISTINCT(ShowingDateTime) FROM Showing ORDER BY ShowingDateTime; ")
+    get_showing=("select distinct(MovieName) from Movie,TheatreRoom, Showing where Showing.TheatreRoom_RoomNumber=TheatreRoom.RoomNumber and Showing. Movie_idMovie=Movie.idMovie and TheatreRoom.Capacity>1;")
+
     try:
         cursor.execute(get_genre)
         genre = cursor.fetchall()
@@ -419,6 +420,7 @@ def searchm():
     except:
        
         return render_template('fail.html')
+
 
 @app.route('/sqlInjection')
 def sqlInjection(name=None):
