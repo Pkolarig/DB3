@@ -4,13 +4,13 @@ By Genre: <br>
 {% for user in genres %}
 <input list="Genre" name="Genre">
   <datalist id="Genre">
-    <option value={{user.0}}>
+    <option value={{genre.0}}>
 </datalist>
 {% endfor %}<br><br>
 
 By Date: <br>
 Start Date
-{% for user in user %}
+{% for stime in stimes %}
 <input list="stime" name="stime">
   <datalist id="stime">
     <option value={{stime.0}}>
@@ -18,7 +18,7 @@ Start Date
 {% endfor %}
 
 : End Date
-{% for user in user %}
+{% for user in etimes %}
 <input list="etime" name="etime">
   <datalist id="etime">
     <option value={{etime.0}}>
